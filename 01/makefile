@@ -1,6 +1,6 @@
-all: main.cpp allocator.cpp
-	g++ -o main main.cpp allocator.cpp 
+all: test.cpp allocator.cpp
+	g++ -o test1 test.cpp allocator.cpp 
 test: test.cpp allocator.cpp
-	g++ -o test test.cpp allocator.cpp 
+	./test1
 clean:
-	rm -rf *.o test main
+	rm -rf *.o test1
