@@ -16,9 +16,9 @@
 	{ 
 		if (!is_allocated)
 		{
+			is_allocated = true;
 			if (max_size != 0)//если выделяем 0 памяти, то возвращаем нулевые указатели
 			{
-				is_allocated = true;
 				base_address = new char[max_size];//выделяем память для большого фиксированного блока
 				total_size = max_size; //заносим в струтуру размер большого блока
 				offset = base_address; //так как данный блок выделяет только память под большой кусок смещение=0
