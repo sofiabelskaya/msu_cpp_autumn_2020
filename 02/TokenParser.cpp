@@ -32,7 +32,7 @@ TokenParser::TokenParser(ifstream& in) //считываем строки из и
                 }
                 else {
                     new_token = my_line.substr(0, delimiter_pos);
-                    if (new_token.find_first_of(delimiter) == string::npos and new_token != "") {
+                    if (new_token.find_first_of(delimiter) == string::npos && new_token != "") {
                         tokens.push_back(new_token);
                     }
                     my_line = my_line.substr(delimiter_pos + 1);
@@ -44,7 +44,7 @@ TokenParser::TokenParser(ifstream& in) //считываем строки из и
         size_t not_digit_pos = token.find_first_not_of("0123456789");
         size_t digit_pos = token.find_first_of("0123456789");
         size_t alphabetic_pos = token.find_first_of("abcdefghijklmnopqrstuvwxyz");
-        if (not_digit_pos == string::npos and digit_pos != string::npos) {
+        if (not_digit_pos == string::npos && digit_pos != string::npos) {
             digits.push_back(stoi(token));
         }
         else if (alphabetic_pos != string::npos) {
