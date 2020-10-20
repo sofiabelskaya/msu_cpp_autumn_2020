@@ -1,0 +1,85 @@
+#include <iostream>
+#include <fstream>
+#include <functional>
+#include <vector>
+#include <string>
+#include <cstddef>
+#include <algorithm>
+#include "TokenParser.h"
+using namespace std;
+
+TokenParser::TokenParser(ifstream& in) //считываем строки из исходного файла
+{
+    string new_line;
+    while (getline(in, new_line)) //считываем строки в вектор строк
+    {
+        lines.push_back(new_line);
+    }
+    for (auto my_line : lines) //итерируемся по вектору строк и считываем все
+    //токены в вектор токенов
+    {
+        while (true) {
+            size_t delimiter_pos = my_line.find_first_of(delimiter);
+            if (delimiter_pos == string::npos) {
+                if (my_line != "") {
+                    tokens.push_back(my_line);
+                }
+                break;
+            }
+            else {
+                if (delimiter_pos == 0) {
+                    my_line.erase(0, 1);
+                }
+                else {
+                    tokens.push_back(
+                        string(my_line.begin(), my_line.begin() + delimiter_pos));
+                    my_line.erase(0, delimiter_pos + 1);
+                }
+            }
+        }
+    }
+    for (auto token : tokens) {
+        bool is_digit = true;
+        for (auto t : token) {
+            if (!isdigit(t)) {
+                words.push_back(token);
+                is_digit = false;
+                break;
+            }
+        }
+        if (is_digit)
+            digits.push_back(stoi(token));
+    }
+}
+TokenParser::~TokenParser()
+{
+    lines.clear();
+    tokens.clear();
+    words.clear();
+    digits.clear();
+}
+void TokenParser::SetStartCallback(
+    function<void()> user_function) //перед началом парсинга пользователь может
+//вызвать функцию без параметров
+{
+    user_function();
+}
+void TokenParser::SetDigitTokenCallback(
+    function<void(vector<int>)>
+        user_function) //вызовет функцию пользователя от числовых токенов
+{
+    user_function(digits);
+}
+void TokenParser::SetWordTokenCallback(
+    function<void(vector<string>)>
+        user_function) //вызовет функцию пользователя от токенов-слов
+{
+    user_function(words);
+}
+void TokenParser::SetEndCallback(
+    function<void(vector<string>)> user_function) //после парсинга пользователь
+//может вызвать функцию от
+//всех токенов
+{
+    user_function(tokens);
+}
