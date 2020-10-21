@@ -15,26 +15,26 @@ TokenParser::TokenParser(ifstream& in) //считываем строки из и
     {
         lines.push_back(new_line);
     }
-    for ( auto& my_line : lines) //итерируемся по вектору строк и считываем все
+    for (const auto& my_line : lines) //итерируемся по вектору строк и считываем все
     //токены в вектор токенов
     {
-		size_t delimiter_pos =0;
-		size_t delimiter_pos_old =-1;
+	size_t delimiter_pos =0;
+	size_t delimiter_pos_old =-1;
         while (true) {
             delimiter_pos = my_line.find_first_of(delimiter,delimiter_pos_old+1);
             if (delimiter_pos == string::npos) {
                 if (my_line.begin()+delimiter_pos_old+1 < my_line.end()) {
-                    tokens.push_back(string(my_line.begin()+delimiter_pos_old+1, my_line.end()));
+                    	tokens.push_back(string(my_line.begin()+delimiter_pos_old+1, my_line.end()));
                 }
                 break;
             }
             else {
                 if (delimiter_pos == delimiter_pos_old+1) {
-					delimiter_pos_old ++;
+			delimiter_pos_old ++;
                 }
                 else {
-                    tokens.push_back(string(my_line.begin()+delimiter_pos_old+1, my_line.begin() + delimiter_pos));
-                    delimiter_pos_old = delimiter_pos;
+			tokens.push_back(string(my_line.begin()+delimiter_pos_old+1, my_line.begin() + delimiter_pos));
+                    	delimiter_pos_old = delimiter_pos;
                 }
             }
         }
