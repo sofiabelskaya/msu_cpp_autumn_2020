@@ -102,7 +102,7 @@ const Helper Matrix::operator[](const size_t i) const
     const Helper line(cols, matrix[i]);
     return line;
 }
-const Matrix operator+(const Matrix& m1, const Matrix& m2)
+Matrix operator+(const Matrix& m1, const Matrix& m2)
 {
     if (m1.rows == m2.rows && m1.cols == m2.cols) {
         Matrix m3(m1.rows, m1.cols);
@@ -176,7 +176,7 @@ Matrix& Matrix::operator*=(const int& k) //если матрица задана,
     }
     return *this;
 }
-const bool operator==(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+bool operator==(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
 {
     if (m1.rows == m2.rows && m1.cols == m2.cols) {
         for (size_t i = 0; i < m1.rows; i++) {
@@ -192,7 +192,7 @@ const bool operator==(const Matrix& m1, const Matrix& m2) //если матри�
         throw "wrong sizes";
 }
 
-const bool operator>(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+bool operator>(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
 {
     if (m1.rows == m2.rows && m1.cols == m2.cols) {
         for (size_t i = 0; i < m1.rows; i++) {
@@ -207,7 +207,7 @@ const bool operator>(const Matrix& m1, const Matrix& m2) //если матриц
     else
         throw "wrong sizes";
 }
-const bool operator<(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+bool operator<(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
 {
     if (m1.rows == m2.rows && m1.cols == m2.cols) {
         for (size_t i = 0; i < m1.rows; i++) {
@@ -222,7 +222,7 @@ const bool operator<(const Matrix& m1, const Matrix& m2) //если матриц
     else
         throw "wrong sizes";
 }
-const bool operator!=(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+bool operator!=(const Matrix& m1, const Matrix& m2) //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
 {
     if (m1.rows == m2.rows && m1.cols == m2.cols) {
         for (size_t i = 0; i < m1.rows; i++) {
