@@ -26,7 +26,7 @@ public:
     Matrix();
     Matrix(const size_t m, const size_t n);
     Matrix(const Matrix& m);
-	~Matrix();
+    ~Matrix();
     const size_t getRows() const;
     const size_t getColumns() const;
     Helper operator[](size_t i);
