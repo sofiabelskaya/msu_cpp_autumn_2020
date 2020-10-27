@@ -31,14 +31,14 @@ public:
     const size_t getColumns() const;
     Helper operator[](size_t i);
     const Helper operator[](const size_t i) const;
-    friend const Matrix operator+(const Matrix& m1, const Matrix& m2);
+    friend Matrix operator+(const Matrix& m1, const Matrix& m2);
     friend ostream& operator<<(ostream& out, const Matrix& m);
     Matrix& operator=(const Matrix& m); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
     Matrix& operator+=(const Matrix& m); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
     Matrix& operator*=(const int& k); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
-    const bool friend operator==(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
-    const bool friend operator>(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
-    const bool friend operator<(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
-    const bool friend operator!=(const Matrix& m1, const Matrix& m2);
+    bool friend operator==(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+    bool friend operator>(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+    bool friend operator<(const Matrix& m1, const Matrix& m2); //если матрица задана, то переприсвоит значения, если только обьявлен пустой обьект, то скопирует m3
+    bool friend operator!=(const Matrix& m1, const Matrix& m2);
 };
 #endif
