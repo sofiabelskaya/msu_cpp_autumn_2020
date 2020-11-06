@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
-#include <bits/stdc++.h>
+#include <algorithm>
 #include "BigInt.h"
 using namespace std;
 
