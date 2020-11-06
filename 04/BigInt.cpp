@@ -391,6 +391,7 @@ BigInt& BigInt::operator=(BigInt&& moved)
         moved.is_set = false;
         moved.is_positive = true;
     }
+    return *this;
 }
 BigInt& BigInt::operator+=(const BigInt& other)
 {
