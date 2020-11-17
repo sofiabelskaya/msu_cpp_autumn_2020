@@ -22,27 +22,22 @@ public:
 };
 
 template <class T>
-int str_args(stringstream& stream, T arg)
+string str_args(T& arg)
 {
-    stream << arg << endl;
-    return 0;
+    stringstream stream;
+    stream << arg;
+    return stream.str();
 }
 
 template <class... Args>
-string format(string format_arg, Args... args)
+string format(const string& format_arg, const Args&... args)
 {
     size_t pos_op = 0;
     size_t pos_cl = 0;
     size_t curr_pos = 0;
     string text = "";
-    stringstream stream;
-    string e;
-    vector<string> arg_vec;
-    int l[] = { str_args(stream, args)... };
+    vector<string> arg_vec = { str_args(args)... };
     unsigned int i;
-    while (getline(stream, e)) {
-        arg_vec.push_back(e);
-    }
     while (curr_pos < format_arg.size()) {
         pos_op = format_arg.find_first_of("{", curr_pos);
         pos_cl = format_arg.find_first_of("}", curr_pos);
@@ -60,13 +55,9 @@ string format(string format_arg, Args... args)
         try {
             i = stoi(string(format_arg.begin() + pos_op + 1, format_arg.begin() + pos_cl));
         }
-        catch (const std::invalid_argument) {
+        catch (const std::logic_error) {
             throw FormatException("invalid argument for {} ", __FILE__, __LINE__);
         }
-        catch (const std::out_of_range) {
-            throw FormatException("invalid argument for {} ", __FILE__, __LINE__);
-        }
-
         if (i >= arg_vec.size()) {
             throw FormatException("invalid argument for {}: index out of range ", __FILE__, __LINE__);
         }
