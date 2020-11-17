@@ -22,7 +22,7 @@ public:
 };
 
 template <class T>
-string str_args(T& arg)
+string str_args(const T& arg)
 {
     stringstream stream;
     stream << arg;
