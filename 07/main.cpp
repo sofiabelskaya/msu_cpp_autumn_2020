@@ -90,4 +90,11 @@ int main()
     else {
         cout << "test9 fail" << endl;
     }
+    std::reverse_iterator<MyIterator<int>> it = v.rbegin();
+	if (it[0] == (v.end()-1)[0]) {
+        cout << "test10 ok" << endl;
+    }
+    else {
+        cout << "test10 fail" << endl;
+    }
 }
