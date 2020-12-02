@@ -130,18 +130,16 @@ public:
 
     T& operator[](size_t i)
     {
-		if(i >= size_)
-		{
-			throw std::out_of_range("index is out of range");
-		}
+	if(i >= size_){
+	   throw std::out_of_range("index is out of range");
+	}
         return this->storage[i];
     }
     const T& operator[](const size_t i) const
     {
-		if(i >= size_)
-		{
-			throw std::out_of_range("index is out of range");
-		}
+	if(i >= size_){
+	   throw std::out_of_range("index is out of range");
+	}
         return this->storage[i];
     }
     void pop_back()
