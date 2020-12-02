@@ -5,7 +5,7 @@
 using namespace std;
 
 template <class T>
-class MyIterator : public std::iterator<std::input_iterator_tag, T> {
+class MyIterator : public std::iterator<std::random_access_iterator_tag, T> {
     template <class T_, class Allocator>
     friend class Vector;
 
@@ -130,10 +130,18 @@ public:
 
     T& operator[](size_t i)
     {
+		if(i >= size_)
+		{
+			throw std::out_of_range("index is out of range");
+		}
         return this->storage[i];
     }
     const T& operator[](const size_t i) const
     {
+		if(i >= size_)
+		{
+			throw std::out_of_range("index is out of range");
+		}
         return this->storage[i];
     }
     void pop_back()
@@ -208,7 +216,7 @@ public:
 
     bool empty() const
     {
-        return size_ == 0 ? true : false;
+        return size_ == 0;
     }
 
     iterator begin()
