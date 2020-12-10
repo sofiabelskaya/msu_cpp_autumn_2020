@@ -1,5 +1,5 @@
 all: main.cpp 
-	clang++ -std=c++17 -stdlib=libc++ -o myrun main.cpp
+	clang++ -std=c++17 -stdlib=libc++ -pthread -o myrun main.cpp
 test: main.cpp
 	./myrun
 clean:
